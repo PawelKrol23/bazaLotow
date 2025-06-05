@@ -5,7 +5,6 @@ import org.example.bazalotow2.dto.flight.FlightDTO;
 import org.example.bazalotow2.entity.Airplane;
 import org.example.bazalotow2.entity.Flight;
 import org.example.bazalotow2.exception.notfound.EntityNotFoundException;
-import org.example.bazalotow2.hateoas.AirplaneModelAssembler;
 import org.example.bazalotow2.hateoas.FlightModelAssembler;
 import org.example.bazalotow2.mapper.AirplaneMapper;
 import org.example.bazalotow2.repository.AirplaneRepository;

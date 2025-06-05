@@ -22,6 +22,8 @@ public class User {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false, updatable = false)
+    private String authority;
 
     @OneToMany(mappedBy = "user")
     private List<Ticket> tickets;
