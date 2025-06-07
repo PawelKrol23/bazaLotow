@@ -2,9 +2,7 @@ package org.example.bazalotow2.hateoas;
 
 import lombok.RequiredArgsConstructor;
 import org.example.bazalotow2.controller.AirplaneController;
-import org.example.bazalotow2.dto.airplane.AirplaneDTO;
 import org.example.bazalotow2.dto.flight.FlightDTO;
-import org.example.bazalotow2.entity.Airplane;
 import org.example.bazalotow2.entity.Flight;
 import org.example.bazalotow2.mapper.FlightMapper;
 import org.springframework.hateoas.CollectionModel;

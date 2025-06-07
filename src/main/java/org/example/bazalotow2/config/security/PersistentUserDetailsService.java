@@ -1,4 +1,4 @@
-package org.example.bazalotow2.config;
+package org.example.bazalotow2.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.example.bazalotow2.entity.User;

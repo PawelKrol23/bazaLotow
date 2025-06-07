@@ -3,6 +3,8 @@ package org.example.bazalotow2.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Flight {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
@@ -29,5 +31,6 @@ public class Flight {
     private Airplane airplane;
 
     @OneToMany(mappedBy = "flight")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Ticket> tickets;
 }

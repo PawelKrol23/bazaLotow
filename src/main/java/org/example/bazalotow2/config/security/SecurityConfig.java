@@ -1,7 +1,8 @@
-package org.example.bazalotow2.config;
+package org.example.bazalotow2.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,6 +25,14 @@ public class SecurityConfig {
                                         "/swagger-ui/**",
                                         "/swagger-ui.html"
                                 ).permitAll()
+                                .requestMatchers(HttpMethod.GET, "/airplane").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/airplane/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/airplane").hasAnyAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/airplane/**").hasAnyAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/airplane/**").hasAnyAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/city").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/city/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/city").hasAnyAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )

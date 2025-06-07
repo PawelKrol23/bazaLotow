@@ -1,5 +1,6 @@
 package org.example.bazalotow2.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.example.bazalotow2.dto.airplane.AirplaneCreateDTO;
 import org.example.bazalotow2.dto.airplane.AirplaneDTO;
@@ -29,17 +30,20 @@ public class AirplaneController {
     }
 
     @PostMapping
+    @SecurityRequirement(name = "basicAuth")
     public EntityModel<AirplaneDTO> createNewAirplane(@RequestBody AirplaneCreateDTO airplaneCreateDTO) {
         return airplaneService.createNewAirplane(airplaneCreateDTO);
     }
 
     @DeleteMapping("/{airplaneId}")
+    @SecurityRequirement(name = "basicAuth")
     public ResponseEntity<Void> deleteAirplane(@PathVariable Long airplaneId) {
         airplaneService.deleteAirplane(airplaneId);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{airplaneId}")
+    @SecurityRequirement(name = "basicAuth")
     public EntityModel<AirplaneDTO> updateAirplane(@PathVariable Long airplaneId,
                                                    @RequestBody AirplaneCreateDTO airplaneCreateDTO) {
         return airplaneService.updateAirplane(airplaneId, airplaneCreateDTO);
