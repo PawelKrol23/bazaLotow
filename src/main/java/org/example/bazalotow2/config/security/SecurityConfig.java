@@ -33,6 +33,8 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/city").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/city/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/city").hasAnyAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/city/**").hasAnyAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/city/**").hasAnyAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )

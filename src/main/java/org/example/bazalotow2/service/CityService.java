@@ -38,4 +38,20 @@ public class CityService {
         City newCity = cityRepository.save(cityMapper.toEntity(cityCreateDTO));
         return cityModelAssembler.toModel(newCity);
     }
+
+    public void deleteCity(Long cityId) {
+        City foundCity = cityRepository.findById(cityId)
+                .orElseThrow(() -> new EntityNotFoundException(cityId, simpleClassName));
+        cityRepository.delete(foundCity);
+    }
+
+    public EntityModel<CityDTO> updateCity(Long cityId, CityCreateDTO cityCreateDTO) {
+        City foundCity = cityRepository.findById(cityId)
+                .orElseThrow(() -> new EntityNotFoundException(cityId, simpleClassName));
+
+        foundCity.setName(cityCreateDTO.name());
+        foundCity.setCountry(cityCreateDTO.country());
+
+        return cityModelAssembler.toModel(cityRepository.save(foundCity));
+    }
 }

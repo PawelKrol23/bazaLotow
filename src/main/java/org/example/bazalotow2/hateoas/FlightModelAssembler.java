@@ -1,7 +1,7 @@
 package org.example.bazalotow2.hateoas;
 
 import lombok.RequiredArgsConstructor;
-import org.example.bazalotow2.controller.AirplaneController;
+import org.example.bazalotow2.controller.FlightController;
 import org.example.bazalotow2.dto.flight.FlightDTO;
 import org.example.bazalotow2.entity.Flight;
 import org.example.bazalotow2.mapper.FlightMapper;
@@ -23,7 +23,9 @@ public class FlightModelAssembler implements RepresentationModelAssembler<Flight
     @Override
     public EntityModel<FlightDTO> toModel(Flight flight) {
         return EntityModel.of(flightMapper.toDto(flight),
-            linkTo(methodOn(AirplaneController.class).getAirplaneById(flight.getAirplane().getId())).withRel("airplane")
+                linkTo(methodOn(FlightController.class).getFlightById(flight.getId())).withSelfRel(),
+                linkTo(methodOn(FlightController.class).updateFlight(flight.getId(), null)).withRel("update"),
+                linkTo(methodOn(FlightController.class).deleteFlight(flight.getId())).withRel("delete")
         );
     }
 
@@ -32,8 +34,8 @@ public class FlightModelAssembler implements RepresentationModelAssembler<Flight
                 .map(this::toModel)
                 .toList();
 
-        return CollectionModel.of(entityModels
-
+        return CollectionModel.of(entityModels,
+            linkTo(methodOn(FlightController.class).getAllFlights()).withSelfRel()
         );
     }
 }
