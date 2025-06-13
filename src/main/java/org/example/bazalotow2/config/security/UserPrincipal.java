@@ -15,4 +15,8 @@ public class UserPrincipal implements UserDetails {
     private String password;
     private String username;
     private List<SimpleGrantedAuthority> authorities;
+
+    public boolean isAdmin() {
+        return authorities.getFirst().getAuthority().equalsIgnoreCase("ADMIN");
+    }
 }

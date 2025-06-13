@@ -17,9 +17,11 @@ VALUES ( 2, 3, '2025-06-02',  80, 2);
 
 -- Użytkownicy
 INSERT INTO users ( first_Name, last_Name, email, password, authority)
-VALUES ( 'Jan','Kowalski', 'jan@example.com', 'password1', 'ADMIN');
+VALUES ( 'Jan','Kowalski', 'jan@example.com', 'password1', 'USER');
 INSERT INTO users ( first_Name, last_Name, email, password, authority)
 VALUES ( 'Anna','Nowak', 'anna@example.com', 'password2', 'USER');
+INSERT INTO users ( first_Name, last_Name, email, password, authority)
+VALUES ('Admin', 'Admin', 'admin@example.com', 'password3', 'ADMIN');
 
 -- Bilety
 INSERT INTO ticket ( flight_id, user_id,  purchase_date, confirmed)
