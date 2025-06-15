@@ -1,6 +1,7 @@
 package org.example.bazalotow2.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.example.bazalotow2.config.security.UserPrincipal;
 import org.example.bazalotow2.dto.ticket.TicketCreateDTO;
@@ -51,5 +52,13 @@ public class TicketController {
     public EntityModel<TicketDTO> confirmTicket(@PathVariable Long ticketId,
                                                 @AuthenticationPrincipal UserPrincipal userPrincipal) {
         return ticketService.confirmTicket(ticketId, userPrincipal);
+    }
+
+    @GetMapping("/{ticketId}/pdf")
+    @SecurityRequirement(name = "basicAuth")
+    public void generateTicketPdf(@PathVariable Long ticketId,
+                                  @AuthenticationPrincipal UserPrincipal userPrincipal,
+                                  HttpServletResponse response) {
+        ticketService.writePdfToResponse(response, ticketId, userPrincipal);
     }
 }
